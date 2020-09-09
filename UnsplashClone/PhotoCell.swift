@@ -20,22 +20,17 @@ class PhotoCell: UICollectionViewCell {
 
     var imageUrl: String?
     var index: Int?
-//    var imageDownloader: ImageDownloader?
     weak var delegate: PhotoCellDelegate?
     
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
-//        imageDownloader?.cancel()
-        ImageDownloader.shared.cancel()
     }
     
     func configure(withUrl url: String) {
-        imageUrl = url
-//        imageDownloader = ImageDownloader()
-//        imageDownloader?.cell = self
-        label.text = String(index! + 1)
+//        label.text = String(index! + 1)
 //        label.isHidden = true
+        imageUrl = url
         ImageDownloader.shared.startLoad(withUrl: url, completion: { [weak self] (cachedImage, downloadedImage) in
             guard let self = self else { return }
             if let image = cachedImage {

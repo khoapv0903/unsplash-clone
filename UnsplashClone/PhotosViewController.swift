@@ -12,6 +12,8 @@ class PhotosViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var photos: [String] = []
+    var page: Int = 0
+    var isLoading: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +24,30 @@ class PhotosViewController: UIViewController {
         
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 6)
         
-        PhotosService().listPhotos { (photos, error) in
+        fetchPhotos()
+        
+//        if let path = Bundle.main.path(forResource: "Photos", ofType: "plist") {
+//            if let urls = NSArray(contentsOfFile: path) {
+//                for url in urls {
+//                    self.photos.append(url as! String)
+//                }
+//            }
+//        }
+    }
+    
+    func fetchPhotos() {
+        guard !isLoading else { return }
+        page += 1
+        isLoading = true
+        PhotosService().listPhotos(page: page) { (photos, error) in
+            self.isLoading = false
             if let error = error {
                 print(error.errorDescription ?? "")
             } else if let photos = photos {
-                var i = 0
+//                var i = 0
                 photos.forEach { (photo) in
-                    i += 1
-                    print("\(i). \(photo.urls.thumb)\n")
+//                    i += 1
+//                    print("\(i). \(photo.urls.thumb)\n")
                     self.photos.append(photo.urls.thumb)
                 }
                 DispatchQueue.main.async {
@@ -37,9 +55,7 @@ class PhotosViewController: UIViewController {
                 }
             }
         }
-//        self.photos = ["https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE2Mzg0NH0"]
     }
-
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
@@ -59,9 +75,23 @@ extension PhotosViewController: UICollectionViewDataSource {
         cell.delegate = self
         return cell
     }
+    
+}
+
+extension PhotosViewController: UICollectionViewDelegate {
+    
+    // Load more photos
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offset = collectionView.contentSize.height - view.frame.height
+        if (scrollView.contentOffset.y - offset) >= 0 && page < 5 {
+            fetchPhotos()
+        }
+    }
+    
 }
 
 extension PhotosViewController: UnsplashLayoutDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let imageUrl = photos[indexPath.item]
         let url = URL(string: imageUrl)!
@@ -70,9 +100,11 @@ extension PhotosViewController: UnsplashLayoutDelegate {
         }
         return 100
     }
+    
 }
 
 extension PhotosViewController: PhotoCellDelegate {
+    
     func photoCell(_ cell: PhotoCell, downloadedImage: UIImage, index: Int) {
         // Perform any cell reloads without animation because there is no movement.
         UIView.performWithoutAnimation {
@@ -81,4 +113,8 @@ extension PhotosViewController: PhotoCellDelegate {
             })
         }
     }
+    
 }
+
+
+

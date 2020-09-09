@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C02528A2507520900FAF584 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0252892507520900FAF584 /* ImageCache.swift */; };
+		4C7D31EE2508D5D30025ED49 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D31ED2508D5D30025ED49 /* Photos.plist */; };
 		4CD2C135250629BA00C8472C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C134250629BA00C8472C /* AppDelegate.swift */; };
 		4CD2C137250629BA00C8472C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C136250629BA00C8472C /* SceneDelegate.swift */; };
 		4CD2C139250629BA00C8472C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C138250629BA00C8472C /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		4C0252892507520900FAF584 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		4C7D31ED2508D5D30025ED49 /* Photos.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
 		4CD2C131250629BA00C8472C /* UnsplashClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD2C134250629BA00C8472C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CD2C136250629BA00C8472C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				4CD2C13D250629BB00C8472C /* Assets.xcassets */,
 				4CD2C13F250629BB00C8472C /* LaunchScreen.storyboard */,
 				4CD2C142250629BB00C8472C /* Info.plist */,
+				4C7D31ED2508D5D30025ED49 /* Photos.plist */,
 			);
 			path = UnsplashClone;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				4CD2C141250629BB00C8472C /* LaunchScreen.storyboard in Resources */,
 				4CD2C13E250629BB00C8472C /* Assets.xcassets in Resources */,
+				4C7D31EE2508D5D30025ED49 /* Photos.plist in Resources */,
 				4CD2C13C250629BA00C8472C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
