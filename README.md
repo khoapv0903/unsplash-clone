@@ -1,2 +1,2 @@
 # unsplash-clone
-![Landing](UnsplashClone/Landing/img1.png)
+![Landing](UnsplashClone/Landing/img2.png)
